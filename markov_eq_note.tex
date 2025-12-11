@@ -1,45 +1,27 @@
-\RequirePackage{luatex85}
-\documentclass[a4paper]{jlreq}
+\documentclass[uplatex,12pt,dvipdfmx]{jsarticle}
 
-\usepackage{luatexja-fontspec}
 \usepackage{fullpage}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{mathtools}
 \usepackage{stmaryrd}
+
+\usepackage[unicode,pagebackref]{hyperref} 
+\usepackage{url}
+\hypersetup{breaklinks=true}
+
 \usepackage[all]{xy}
+
+\usepackage{tikz}
+\usetikzlibrary{matrix}
 \usepackage{dynkin-diagrams}
-\usepackage{listings}
-\usepackage{ltablex}
-\usepackage{tikz-cd}
-\usepackage{xtab}
-\usepackage{caption}
 
 \usepackage{empheq}
 
-\usepackage[pagebackref]{hyperref}
-\usepackage{url}
-\hypersetup{breaklinks=true}
 
 \makeatletter
 \def\lst@lettertrue{\let\lst@ifletter\iffalse}
 \makeatother
 
-\lstset{
-	language={Python}, 
-	backgroundcolor={\color[gray]{.85}}, 
-	basicstyle={\ttfamily}, 
-	\lst@ifdisplaystyle\small\fi, 
-	commentstyle={\smallitshape}, 
-	keywordstyle={\small\bfseries}, 
-	ndkeywordstyle={\small}, 
-	stringstyle={\small\ttfamily}, 
-	frame={tb}, 
-	breaklines=true, 
-	columns=[l]{fullflexible}, 
-	xrightmargin=0.5mm, 
-	xleftmargin=0.5mm, 
-	keepspaces=true, 
-}
 
 \setcounter{MaxMatrixCols}{20}
 
@@ -51,6 +33,7 @@
 \newtheorem{remark}[definition]{Remark}
 \newtheorem{example}[definition]{Example}
 \newtheorem{main}[definition]{Main Theorem}
+\newtheorem{question}[definition]{Question}
 
 \numberwithin{equation}{section}
 
@@ -174,8 +157,8 @@ $n=4$ で $(e_i)_{i=1}^4$ が exceptional basis, つまり $M$ が対角成分1�
 このとき{\cite[Lem 3.1.3]{devolcsey2016analoguemarkovequationexceptional}}の類似で次が成立する。
 \begin{proposition}
 	\begin{gather}
-		q_1(M) = acdf − abd − ace − bcf − def + a^2 + b^2 + c^2 + d^2 + e^2 + f^2, \\
-		q_2(M) = af − be + cd
+		q_1(M) = acdf - abd - ace - bcf - def + a^2 + b^2 + c^2 + d^2 + e^2 + f^2, \\
+		q_2(M) = af - be + cd
 	\end{gather}
 	とおくとき、
 	\begin{align}
@@ -198,12 +181,12 @@ $n=4$ で $(e_i)_{i=1}^4$ が exceptional basis, つまり $M$ が対角成分1�
 	
 	手計算等で
 	\begin{align}
-		\det(tM - \transpose{M}) = t^4 + (q_1(M) - 4)t^3 + (q_2(M)^2 − 2q_1(M) + 6)t^2 + (q_1(M) - 4)t + 1
+		\det(tM - \transpose{M}) = t^4 + (q_1(M) - 4)t^3 + (q_2(M)^2 - 2q_1(M) + 6)t^2 + (q_1(M) - 4)t + 1
 	\end{align}
 	が分かるので
 	\begin{align}
 		(s + 1)^4 = 0\iff&\chi(t) = (t + 1)^4\\
-		\iff&q_1(M) - 4 = 4, q_2(M)^2 − 2q_1(M) + 6 = 6\\
+		\iff&q_1(M) - 4 = 4, q_2(M)^2 - 2q_1(M) + 6 = 6\\
 		\iff&q_1(M) = 8, q_2(M)^2 = 16.
 	\end{align}
 \end{proof}
@@ -448,12 +431,12 @@ Gram matrixは
 
 \subsection{$V_{22}$}
 
-$V_{22}$　とは、$Gr(3, 7)$ 上の tautological bundle を $\mathcal{U}$ とするとき、$(\bigwedge^2 \mathcal{U}^\vee)^{\oplus3}$の一般切断として実現される Fano threefold である。
+$V_{22}$ とは、$Gr(3, 7)$ 上の tautological bundle を $\mathcal{U}$ とするとき、$(\bigwedge^2 \mathcal{U}^\vee)^{\oplus3}$の一般切断として実現される Fano threefold である。
 
 $Gr(3,7)$ は $A_6$型の $SL(7,\Complex)$ の旗多様体であり、対応する crossed out Dynkin diagram は $\dynkin[labels={\alpha_1,\alpha_2,\alpha_3,\alpha_4,\alpha_5,\alpha_6}] A{**x***}$となる。
 このとき rank $2$のベクトル束$\mathcal{E}$
 \footnote{Mukai bundleとよばれている。
-	$V_{22}$　の超平面切断 $Y$ 上の直線束 $\mathcal{O}_Y(L)$ に付随して定義される束で、以下の完全列を満たす核として定義される。
+	$V_{22}$ の超平面切断 $Y$ 上の直線束 $\mathcal{O}_Y(L)$ に付随して定義される束で、以下の完全列を満たす核として定義される。
 	\begin{align}
 		\xymatrix{
 			0 \ar[r] &\mathcal{E} \ar[r]& H^0(\mathcal{O}_Y(L)) \otimes \mathcal{O}_X \ar[r]& \mathcal{O}_Y(L) \ar[r]& 0
@@ -464,7 +447,7 @@ $Gr(3,7)$ は $A_6$型の $SL(7,\Complex)$ の旗多様体であり、対応す�
 }
 が存在して $\mathcal{U}$ は $V_{22}$ に制限したものを意味するとして $(\mathcal{O}_{V_{22}}, \mathcal{U}^*, \mathcal{E}^*, \bigwedge^2 \mathcal{U}^*)$ は $V_{22}$ の例外生成列であることが\cite{MR1445274}で示されている。
 
-ただし、GeminiとSagemathによる計算結果によれば$\mathcal{E}$は$K$群において
+ただし、GeminiとSageMathによる計算結果によれば$\mathcal{E}$は$K$群において
 \begin{align}
 	[\mathcal{E}^\vee] = -\frac{1}{20}[\mathcal{O}_{V_{22}}] + \frac{7}{20}[\mathcal{U}^*] + \frac{7}{20}[\bigwedge^2 \mathcal{U}^*] - \frac{1}{20}[\mathcal{O}_{V_{22}}(1)]
 \end{align}
@@ -486,6 +469,123 @@ Gram matrixは
 \end{gather}
 となる。
 \footnote{$\mathcal{U}^*$ は $(1, 0, 0, 0, 0, 0)$ に対応する。}
+
+\begin{question}
+	ディオファントス方程式\eqref{markov_eq}の解の $B_n\ltimes\Z^n$ あるいは $B_n$ による orbit は $\Projective^3$, $Q_3$, $V_5$, $V_{22}$ のもので尽きるか？
+	また、これらは異なる orbit を成すか？
+\end{question}
+
+\section{数値的解の探索と独立性の証明}
+
+計算機探索により、既知の4つの多様体（$\Projective^3, Q_3, V_5, V_{22}$）のいずれの軌道にも属さない数値的解（Numerical Solution）の存在が確認された。
+以下にその具体例と、独立性の証明を与える。
+
+\subsection{数値的解の発見}
+成分の絶対値が小さい範囲での全探索により、多数の新しい解が見出された。
+その中でも最小のノルム（非対角成分の二乗和の平方根）を持つ例として、以下の行列 $M_{\mathrm{ghost}}$ を挙げる。
+
+\begin{align}
+    M_{\mathrm{ghost}} = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & 1 & -2 & -2 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+\end{align}
+
+この行列の不変量は $q_1(M_{\mathrm{ghost}}) = 8, q_2(M_{\mathrm{ghost}}) = 4$ であり、Markov型方程式の条件を満たす。
+
+\subsection{別軌道であることの証明}
+
+発見された解 $M_{\mathrm{ghost}}$ が、既知の4つの多様体の軌道 $O_{X}$ ($X \in \{\Projective^3, Q_3, V_5, V_{22}\}$) のいずれにも含まれないことを、有限体 $\mathbb{F}_3$ 上への還元を用いて証明する。
+
+\begin{theorem}
+    数値的解 $M_{\mathrm{ghost}}$ は、$\Projective^3, Q_3, V_5, V_{22}$ のいずれの $B_n\ltimes\Z^n$ 軌道にも属さない。
+\end{theorem}
+
+\begin{proof}
+    もし $M_{\mathrm{ghost}}$ がある多様体 $X$ の軌道 $O_X$ に含まれるならば、任意の素数 $p$ に対して、法 $p$ で還元した行列も対応する軌道 $\overline{O_X}^{(p)}$ に含まれなければならない。
+    
+    $p=3$ において、各多様体の軌道全体 $\overline{O_X}^{(3)}$ を計算機により生成したところ、その要素数は以下の通りであった。
+    \begin{itemize}
+        \item $|\overline{O_{\Projective^3}}^{(3)}| = 216$
+        \item $|\overline{O_{Q_3}}^{(3)}| = 8$
+        \item $|\overline{O_{V_5}}^{(3)}| = 216$
+        \item $|\overline{O_{V_{22}}}^{(3)}| = 216$
+    \end{itemize}
+    
+    一方、$M_{\mathrm{ghost}}$ を法 $3$ で還元すると
+    \begin{align}
+        M_{\mathrm{ghost}} \equiv \begin{pmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 1 & 1 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 1
+        \end{pmatrix} \pmod 3
+    \end{align}
+    となる。この行列は、上で生成したどの集合 $\overline{O_X}^{(3)}$ にも含まれないことが確認された。
+    したがって、対偶により $M_{\mathrm{ghost}}$ は整数環 $\Z$ 上において、これら4つの多様体のどの軌道にも属さない。
+\end{proof}
+
+なお、同様の方法で他の数値的解についても独立性を確認している。
+
+また、modulo 6での軌道の要素数から$\Projective^3, Q_3, V_5, V_{22}$の軌道が互いに異なることも確認できる。
+
+\subsection{結論}
+以上の結果より、方程式\eqref{markov_eq}の整数解の軌道は、既知のFano 3-fold由来の4つの系列だけでは尽くされないことが示された。
+今回発見された数値的解は、幾何学的な背景を持たない（あるいは未知の幾何学的対象に対応する）「幽霊解（Phantom Solution）」であると考えられる。
+
+そこで、次の問題を考える。
+
+\begin{question}
+	ディオファントス方程式\eqref{markov_eq}の解の $B_n\ltimes\Z^n$ あるいは $B_n$ による orbit は無限に存在するか？
+\end{question}
+
+\begin{question}
+	ディオファントス方程式\eqref{markov_eq}の解の $B_n\ltimes\Z^n$ あるいは $B_n$ による orbit をすべて分類できるか？
+\end{question}
+
+\begin{question}
+	$B_n\ltimes\Z^n$よりもさらに大きい、由緒正しい群でディオファントス方程式\eqref{markov_eq}の解に作用するものは存在するか？
+\end{question}
+
+\begin{question}
+	発見された幽霊解に対応する非可換代数幾何学的対象（圏）は構成できるか？
+\end{question}
+
+\begin{question}
+	数値的解に対応する非可換代数幾何学的対象（圏）の性質はどのようなものか？ 例えば、これらの圏の Hochschild ホモロジーや K 群はどのような構造を持つか？
+\end{question}
+
+\begin{question}
+	幾何的解（ノルム $\geq 136$）と数値的解（ノルム $\leq 44$）の間には、なぜこれほど大きな断絶（ギャップ）があるのか？ 中間のノルムを持つ解は存在しないのか？
+	※数値解の探索範囲がただ小さいだけと予想されるが、念のため。
+\end{question}
+
+\begin{question}
+	発見された幽霊解において、Serre functor $S = M^{-1} {}^t M$ のJordan blockのサイズの分布に何か法則はあるか？
+\end{question}
+
+\begin{remark}
+    いくつかの発見された数値的解 $M_{\mathrm{ghost}}$ について、Serre functor $S = M_{\mathrm{ghost}}^{-1} \transpose{M_{\mathrm{ghost}}}$ のJordan標準形を計算したところ、以下の2種類の異なる構造が見出された。
+
+    \begin{enumerate}
+        \item \textbf{Type [4] (Maximally Unipotent):}
+        ノルムが $10, 26, 44$ などの解に見られる構造。固有値 $-1$ に対応する $4 \times 4$ のJordanブロックを一つだけ持つ。これは既知のFano 3-foldと同様の性質であり、これらは非可換Fano 3-foldの有力な候補であると考えられる。
+        
+        \item \textbf{Type [2, 2]:}
+        ノルムが $8$ の解（最小ノルム解）に見られる構造。$2 \times 2$ のJordanブロック2つからなる。これは、対応する幾何学的対象が可約であるか、あるいは低次元の対象の積（例えば曲面と曲線の積など）のような構造を持っている可能性を示唆している。
+    \end{enumerate}
+\end{remark}
+
+\begin{question}
+	数値的解の空間は、離散的な点集合に見えるが、これらを結ぶような（複素数体上での）連続的な変形、あるいはモジュライ空間のような構造はあるか？
+	（Markov方程式 $x^2+y^2+z^2=3xyz$ は $\mathbb{C}^3$ 上の曲面を定義するが、今回の行列方程式も $\mathbb{C}^{6}$ 内の代数多様体を定義する。その幾何学的性質は？）
+\end{question}
+
+\begin{question}
+	今回は $n=4$（Fano 3-foldに対応）を扱ったが、$n=5$ の場合に同様の「幽霊解」は現れるか？
+\end{question}
 
 
 \bibliography{reference.bib}

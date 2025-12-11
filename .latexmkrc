@@ -1,16 +1,9 @@
 #!/usr/bin/env perl
 
-# BibTeX
-$bibtex = 'pbibtex %O %S';
-$biber = 'biber --bblencoding=utf8 -u -U --output_safechars %O %S';
+$max_repeat = 5;
 
-# index
-$makeindex = 'mendex %O -o %D %S';
-
-# LuaLaTeX
-$lualatex = 'lualatex --cmdx -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error %O %S';
-
-# clean up
-$clean_full_ext = "%R.synctex.gz" ;
-
-$pdf_mode = 4;
+$pdf_mode = 3; # use dvipdfmx
+$latex = 'uplatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S';
+$dvipdf = 'dvipdfmx %O -o %D %S';
+$bibtex = 'upbibtex';
+$makeindex = 'upmendex %O -o %D %S';
