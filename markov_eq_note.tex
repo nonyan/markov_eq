@@ -145,14 +145,14 @@ $s$ の行列表示 $S$ を
 が成立する。
 
 $n=4$ で $(e_i)_{i=1}^4$ が exceptional basis, つまり $M$ が対角成分1の上三角行列である場合を考える。
-\begin{align*}
+\begin{align}
 	M = \begin{pmatrix}
 		1&a&b&c\\
 		0&1&d&e\\
 		0&0&1&f\\
 		0&0&0&1
 	\end{pmatrix}\in M_4(\Z)
-\end{align*}
+\end{align}
 とおく。
 このとき{\cite[Lem 3.1.3]{devolcsey2016analoguemarkovequationexceptional}}の類似で次が成立する。
 \begin{proposition}
@@ -486,8 +486,8 @@ Gram matrixは
 
 \begin{align}
     M_{\mathrm{ghost}} = \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 1 & -2 & -2 \\
+        1 & 0 & 2 & 0 \\
+        0 & 1 & 0 & 2 \\
         0 & 0 & 1 & 0 \\
         0 & 0 & 0 & 1
     \end{pmatrix}
@@ -533,37 +533,37 @@ Gram matrixは
 
 \subsection{結論}
 以上の結果より、方程式\eqref{markov_eq}の整数解の軌道は、既知のFano 3-fold由来の4つの系列だけでは尽くされないことが示された。
-今回発見された数値的解は、幾何学的な背景を持たない（あるいは未知の幾何学的対象に対応する）「幽霊解（Phantom Solution）」であると考えられる。
+今回発見された数値的解は、幾何学的な背景を持たない（あるいは未知の幾何学的対象に対応する）数値的解であると考えられる。
 
 そこで、次の問題を考える。
 
-\begin{question}
+\begin{question}\label{question:1}
 	ディオファントス方程式\eqref{markov_eq}の解の $B_n\ltimes\Z^n$ あるいは $B_n$ による orbit は無限に存在するか？
 \end{question}
 
-\begin{question}
+\begin{question}\label{question:2}
 	ディオファントス方程式\eqref{markov_eq}の解の $B_n\ltimes\Z^n$ あるいは $B_n$ による orbit をすべて分類できるか？
 \end{question}
 
-\begin{question}
+\begin{question}\label{question:3}
 	$B_n\ltimes\Z^n$よりもさらに大きい、由緒正しい群でディオファントス方程式\eqref{markov_eq}の解に作用するものは存在するか？
 \end{question}
 
-\begin{question}
-	発見された幽霊解に対応する非可換代数幾何学的対象（圏）は構成できるか？
+\begin{question}\label{question:4}
+	発見された数値的解に対応する非可換代数幾何学的対象（圏）は構成できるか？
 \end{question}
 
-\begin{question}
+\begin{question}\label{question:5}
 	数値的解に対応する非可換代数幾何学的対象（圏）の性質はどのようなものか？ 例えば、これらの圏の Hochschild ホモロジーや K 群はどのような構造を持つか？
 \end{question}
 
-\begin{question}
+\begin{question}\label{question:6}
 	幾何的解（ノルム $\geq 136$）と数値的解（ノルム $\leq 44$）の間には、なぜこれほど大きな断絶（ギャップ）があるのか？ 中間のノルムを持つ解は存在しないのか？
-	※数値解の探索範囲がただ小さいだけと予想されるが、念のため。
+	※数値的解の探索範囲がただ小さいだけと予想されるが、念のため。
 \end{question}
 
-\begin{question}
-	発見された幽霊解において、Serre functor $S = M^{-1} {}^t M$ のJordan blockのサイズの分布に何か法則はあるか？
+\begin{question}\label{question:7}
+	発見された数値的解において、Serre functor $S = M^{-1} {}^t M$ のJordan blockのサイズの分布に何か法則はあるか？
 \end{question}
 
 \begin{remark}
@@ -578,14 +578,262 @@ Gram matrixは
     \end{enumerate}
 \end{remark}
 
-\begin{question}
-	数値的解の空間は、離散的な点集合に見えるが、これらを結ぶような（複素数体上での）連続的な変形、あるいはモジュライ空間のような構造はあるか？
-	（Markov方程式 $x^2+y^2+z^2=3xyz$ は $\mathbb{C}^3$ 上の曲面を定義するが、今回の行列方程式も $\mathbb{C}^{6}$ 内の代数多様体を定義する。その幾何学的性質は？）
+\begin{question}\label{question:8}
+	$q_1(M) = 8, q_2(M) = -4$, あるいは $q_1(M) = 8, q_2(M) = 4$ で定義される代数多様体はrationalか？
 \end{question}
 
-\begin{question}
-	今回は $n=4$（Fano 3-foldに対応）を扱ったが、$n=5$ の場合に同様の「幽霊解」は現れるか？
+\begin{question}\label{question:9}
+	今回は $n=4$（Fano 3-foldに対応）を扱ったが、$n=5$ の場合に同様の「数値的解」は現れるか？
 \end{question}
+
+\begin{question}\label{question:10}
+	ディオファントス方程式\eqref{markov_eq}の $\mathbb{F}_q$ における解の個数でわかることはあるか？
+\end{question}
+
+
+\section{$q_1(M) = 8, q_2(M) = -4$ で定まる代数多様体はrationalか？}
+
+\subsection{試行錯誤}
+
+Question \ref{question:8} に取り組む。
+もし rational なら、$q_1(M) = 8, q_2(M) = -4$ の一般的な有理数解を媒介変数を用いて表示できることになる。
+$q_1(M) = 8, q_2(M) = -4$ で定まる$\mathbb{A}^6$ 内の代数多様体 $X$ に対する birational な式変形を試みる。
+
+$af - be + cd = q_2(M) = -4$ から $a\neq0$の open subset 上で考えると
+\begin{align}
+	f = \frac{be - cd - 4}{a}
+\end{align}
+となり、これを
+\begin{align}
+	acdf - abd - ace - bcf - def + a^2 + b^2 + c^2 + d^2 + e^2 + f^2 = q_1(M) = 8
+\end{align}
+に代入する。
+そのあと $a^2$ 倍して分母を払って整理すると次が得られる。
+\begin{align}
+	a^4 - a^3bd - a^3ce + a^2b^2 + a^2bcde - a^2c^2d^2 + a^2c^2 - 4a^2cd + a^2d^2 + a^2e^2 - 8a^2 - ab^2ce + abc^2d + 4abc - abde^2 + acd^2e + 4ade + b^2e^2 - 2bcde - 8be + c^2d^2 + 8cd + 16 = 0.
+\end{align}
+$e$ に注目すると、$e$ の2次式になっていて、
+\begin{gather}
+	A = a^2 - abd + b^2,\\
+	B = -a^3c + a^2bcd - ab^2c + acd^2 + 4ad - 2bcd - 8b,\\
+	C = a^4 - a^3bd + a^2b^2 - a^2c^2d^2 + a^2c^2 - 4a^2cd + a^2d^2 - 8a^2 + abc^2d + 4abc + c^2d^2 + 8cd + 16
+\end{gather}
+とおいて
+\begin{align}
+	Ae^2 + Be + C = 0
+\end{align}
+と書ける。
+最後の式を平方完成して、
+\begin{gather*}
+	\rbra*{2Ae + B}^2 = B^2 - 4AC.
+\end{gather*}
+よって
+\begin{gather}
+	w = 2Ae + B,\\
+	\Delta = B^2 -4AC
+\end{gather}
+とおけば $X$ は $\mathbb{A}^5$内で
+\begin{align*}
+	w^2 = \Delta(a,b,c,d)
+\end{align*}
+で定義される超曲面と birational となる。
+計算機での計算結果で
+\begin{equation}
+	\begin{aligned}
+		\Delta = a^2 \bigl( & a^4c^2 - 4a^4 - 2a^3bc^2d + 8a^3bd + a^2b^2c^2d^2 + 2a^2b^2c^2  \\
+		& - 4a^2b^2d^2 - 8a^2b^2 + 2a^2c^2d^2 - 4a^2c^2 + 8a^2cd - 4a^2d^2 + 32a^2  \\
+		& - 2ab^3c^2d + 8ab^3d - 2abc^2d^3 + 4abc^2d - 8abcd^2 + 4abd^3 - 32abd  \\
+		& + b^4c^2 - 4b^4 + 2b^2c^2d^2 - 4b^2c^2 + 8b^2cd - 4b^2d^2 + 32b^2  \\
+		& + c^2d^4 - 4c^2d^2 + 8cd^3 - 32cd + 16d^2 - 64 \bigr)
+	\end{aligned}
+\end{equation}
+となり、$\Delta$ は$a^2$で割り切れる。
+\begin{align}
+	\Delta_0 = \Delta/a^2
+\end{align}
+とすれば $X$ は $\mathbb{A}^5$ 内で
+\begin{align}
+	w^2 = \Delta_0(a,b,c,d)
+\end{align}
+で定義される超曲面 と birational となる。
+
+$\Delta_0$ は $d$ について2次式になっている。
+実は
+\begin{gather}
+	D = A + d^2 - 4 = a^2 - abd + b^2 + d^2 - 4,\\
+	E = D(c^2 - 4) + 4(d + c)^2
+\end{gather}
+とおくと、計算機での計算結果で
+\begin{align}
+	\Delta_0 = DE
+\end{align}
+が分かる。
+よって
+\begin{align}
+	w^2 = DE = D^2(c^2 - 4) + 4D(d + c)^2.
+\end{align}
+そこで $D\neq0$ で
+\begin{align}
+	u=\frac{w}{D}
+\end{align}
+と取れば
+\begin{align}
+	u^2 = (c^2 - 4) + \frac{4(d + c)^2}{D}
+\end{align}
+となり、
+\begin{align}
+	D(u^2 - c^2 + 4) = 4(d + c)^2
+\end{align}
+となる。
+$D$ を戻して $d$ について整理すると
+\begin{gather}
+	S = u^2 - c^2,\\
+	T = -ab(u^2 - c^2 + 4) -8c ,\\
+	U = (a^2 + b^2 - 4)(u^2 - c^2 + 4) - 4c^2
+\end{gather}
+とおいて
+\begin{align}
+	Sd^2 + Td + U = 0.
+\end{align}
+平方完成して
+\begin{align}
+	\rbra*{2Sd + T}^2 = T^2 - 4SU.
+\end{align}
+以前と同じように
+\begin{gather}
+	v = 2Sd + T,\\
+	\Delta_2 = T^2 - 4SU
+\end{gather}
+として
+\begin{align}
+	v^2 = \Delta_2(a,b,c,u)
+\end{align}
+が得られた。
+$\Delta_2$は
+\begin{align}
+	K = u^2 - c^2 + 4
+\end{align}
+を因子に持ち、
+\begin{align}
+	\Delta_2 = K((a^2-4)(b^2-4)K + 16(a^2+b^2+c^2+abc-4))
+\end{align}
+となる。
+\begin{gather}
+	\lambda = \frac{v}{K},\\
+	C_1 = (a^2-4)(b^2-4)
+\end{gather}
+とおけば
+\begin{align*}
+	\lambda^2 = C_1 + \frac{16(a^2+b^2+c^2+abc-4)}{K}.
+\end{align*}
+よって
+\begin{align}\label{eq:1}
+	(\lambda^2 - C_1)(u^2 - c^2 + 4) = 16(a^2+b^2+c^2+abc-4).
+\end{align}
+したがって、$a,b,\lambda$ を自由にとることで　$\mathbb{A}^3_{a,b,\lambda}$ 上の conic bundle とみなせる。
+$a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref{eq:1}を満たす。
+そこで　$(c,u)$　に対して　$(c,u),(c_0,u_0)$　を通る直線の傾きを $\tau$ として \eqref{eq:1}上の点 $(c,u)$ と $\tau$ を対応させて fiber と $\Projective^1$ の birational な対応ができる。
+
+
+\subsection{有理写像の構成}
+
+前節の議論により、$X$ は rational であることが示唆された。
+ここでは具体的に、パラメータ空間 $\mathbb{A}^4$（座標 $(a, b, \lambda, \tau)$）から $X$ への有理写像
+\begin{align}
+	\Phi \colon \mathbb{A}^4 \dashrightarrow X
+\end{align}
+を構成する。
+
+まず、パラメータ $a, b, \lambda$ を固定したとき、$(c, u)$ が満たすべき方程式は
+\begin{align}
+	(\lambda^2 - C_1)u^2 - (\lambda^2 - C_1 + 16)c^2 - 16abc = 4a^2b^2 - 4\lambda^2
+\end{align}
+の形（円錐曲線）となる。
+ここで $C_1 = (a^2-4)(b^2-4)$ である。
+この曲線上の基準点 $(c_0, u_0)$ として、$c=u$ 上の解
+\begin{align}
+	c_0 = u_0 = \frac{\lambda - ab}{2}
+\end{align}
+を採用する。
+この点 $(c_0, u_0)$ を通り傾き $\tau$ の直線
+\begin{align}
+	u - u_0 = \tau(c - c_0)
+\end{align}
+と円錐曲線との（基準点以外の）交点を求めることで、$c, u$ を以下のように有理式で決定できる。
+\begin{gather}
+	\Lambda = \lambda^2 - C_1, \\
+	c = c_0 + \frac{2 \{ (\Lambda+16)c_0 + 8ab - \Lambda c_0 \tau \}}{\Lambda \tau^2 - \Lambda - 16}, \\
+	u = u_0 + \tau(c - c_0).
+\end{gather}
+
+次に、得られた $c, u$ を用いて $d$ を決定する。
+関係式 $v = \lambda K$ および $K = u^2 - c^2 + 4$ より、
+\begin{align}
+	d = \frac{\lambda K + abK + 8c}{2(u^2 - c^2)}.
+\end{align}
+
+続いて $e$ を決定する。
+係数を
+\begin{gather}
+	A_{\mathrm{quad}} = a^2 - abd + b^2, \\
+	B_{\mathrm{quad}} = -a^3c + a^2bcd - ab^2c + acd^2 + 4ad - 2bcd - 8b, \\
+	D_{\mathrm{val}} = A_{\mathrm{quad}} + d^2 - 4
+\end{gather}
+とおくとき、関係式 $w^2 = \Delta_0 = D_{\mathrm{val}} E$ および $w = u D_{\mathrm{val}}$ より
+\begin{align}
+	e = \frac{u D_{\mathrm{val}} - B_{\mathrm{quad}}}{2 A_{\mathrm{quad}}}.
+\end{align}
+
+最後に $f$ を決定する。
+\begin{align}
+	f = \frac{be - cd - 4}{a}.
+\end{align}
+
+以上の手続きにより、$(a, b, \lambda, \tau)$ から $(a, b, c, d, e, f)$ が有理式のみで構成される。
+したがって $X$ は $\mathbb{A}^4$ と双有理同値であり、Question \ref{question:8} への回答は肯定的である。
+
+\subsection{特殊解}
+
+★一般の有理数解を得ることができるようになったので、そこから漏れる有理数解について考える。
+
+\subsection{組み紐群の作用との関係}
+
+★ディオファントス方程式\eqref{markov_eq}の解への$B_4$の作用は$A^4$だとどうなっているか？
+
+\section{$\mathbb{F}_q$における解の個数}
+
+\ref{question:10}に従い、ディオファントス方程式\eqref{markov_eq}の $\mathbb{F}_q$における解の個数を調べる。
+$q_2{}^2 = 16$　については　$q_2 = \pm4$のいずれかのみ調べればいいので、$q_1(M) = 8, q_2(M) = -4$ について考える。
+
+素数べきではなく素数に対してのみ解の個数 $N_p$ をSageMathで数えた結果は次の通り：
+
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|r|}
+		\hline
+		$p$ & $N_p (q^2=-4)$ \\
+		\hline
+		2 & 21 \\
+		3 & 118 \\
+		5 & 726 \\
+		7 & 2,598 \\
+		11 & 15,126 \\
+		13 & 29,238 \\
+		19 & 131,766 \\
+		23 & 281,958 \\
+		29 & 710,646 \\
+		\hline
+	\end{tabular}
+	\caption{$p$ と $N_p (q^2=-4)$ の値}
+	\label{tab:Np_values}
+\end{table}
+
+$p=2$ を除いて
+\begin{align}
+	N_p = p^4 + 4p^2 + 1
+\end{align}
+となっている。
 
 
 \bibliography{reference.bib}
