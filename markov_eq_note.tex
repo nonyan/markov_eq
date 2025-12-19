@@ -93,6 +93,8 @@
 
 \maketitle
 
+\tableofcontents
+
 \section{Markov 方程式}
 
 \cite{devolcsey2016analoguemarkovequationexceptional}で次の Serre lattice が定義されている。
@@ -285,7 +287,7 @@ $\numGrothendieckgrp{X}$ 上では shift functor は $(-1)$ 倍することに�
 これを一般化し、$\Z^n$ の Serre lattice の exceptional basis 全体への作用の定義として採用する。
 \footnote{本質的には $(\Z/2\Z)^n$ の作用となる。}
 この作用により、exceptional basis から作られる Gram matrix にも $\Z^n$ の作用が反映される。
-$K$ の exceptional basis $(e_1,\ldots,e_n)$ に関する Gram matrix を $M$ とするとき、$v\in B_n$ に対して $v\cdots(e_1,\ldots,e_n)$ に関する Gram matrix を $v\cdot M$ とかくことにする。
+$K$ の exceptional basis $(e_1,\ldots,e_n)$ に関する Gram matrix を $M$ とするとき、$v\in B_n$ に対して $v\cdot(e_1,\ldots,e_n)$ に関する Gram matrix を $v\cdot M$ とかくことにする。
 
 $n=4$ の場合を具体的に計算すると次の通り：
 \begin{gather}
@@ -405,7 +407,7 @@ Geminiの主張とも一致する。}
 
 \subsection{$V_5$}
 
-$V_5$ とは、Grassmann 多様体 $Gr(2,5)$ の一般的な 3 つの超平面断面として実現される Fano threefold である。
+$V_5$ とは、Grassmann 多様体 $Gr(2,5)$ の一般的な 3 つの超平面により切り取られる断面として実現される Fano threefold である。
 
 $Gr(2,5)$ は $A_4$型の $SL(5,\Complex)$ の旗多様体であり、対応する crossed out Dynkin diagram は $\dynkin[labels={\alpha_1,\alpha_2,\alpha_3,\alpha_4}] A{*x**}$となる。
 $\mathcal{U}$ を $Gr(2,5)$ 上の tautological bundle を $V_5$ に制限したものとする。
@@ -609,9 +611,14 @@ $af - be + cd = q_2(M) = -4$ から $a\neq0$の open subset 上で考えると
 \end{align}
 に代入する。
 そのあと $a^2$ 倍して分母を払って整理すると次が得られる。
-\begin{align}
-	a^4 - a^3bd - a^3ce + a^2b^2 + a^2bcde - a^2c^2d^2 + a^2c^2 - 4a^2cd + a^2d^2 + a^2e^2 - 8a^2 - ab^2ce + abc^2d + 4abc - abde^2 + acd^2e + 4ade + b^2e^2 - 2bcde - 8be + c^2d^2 + 8cd + 16 = 0.
-\end{align}
+\begin{equation}
+	\begin{aligned}[t]
+		& a^4 - a^3bd - a^3ce + a^2b^2 + a^2bcde - a^2c^2d^2 + a^2c^2 - 4a^2cd + a^2d^2 + a^2e^2\\
+		& - 8a^2 - ab^2ce + abc^2d + 4abc - abde^2 + acd^2e + 4ade + b^2e^2 - 2bcde\\
+		& - 8be + c^2d^2 + 8cd + 16 = 0.
+	\end{aligned}
+\end{equation}
+
 $e$ に注目すると、$e$ の2次式になっていて、
 \begin{gather}
 	A = a^2 - abd + b^2,\\
@@ -640,11 +647,11 @@ $e$ に注目すると、$e$ の2次式になっていて、
 計算機での計算結果で
 \begin{equation}
 	\begin{aligned}
-		\Delta = a^2 \bigl( & a^4c^2 - 4a^4 - 2a^3bc^2d + 8a^3bd + a^2b^2c^2d^2 + 2a^2b^2c^2  \\
+		\Delta/a^2 = & a^4c^2 - 4a^4 - 2a^3bc^2d + 8a^3bd + a^2b^2c^2d^2 + 2a^2b^2c^2  \\
 		& - 4a^2b^2d^2 - 8a^2b^2 + 2a^2c^2d^2 - 4a^2c^2 + 8a^2cd - 4a^2d^2 + 32a^2  \\
 		& - 2ab^3c^2d + 8ab^3d - 2abc^2d^3 + 4abc^2d - 8abcd^2 + 4abd^3 - 32abd  \\
 		& + b^4c^2 - 4b^4 + 2b^2c^2d^2 - 4b^2c^2 + 8b^2cd - 4b^2d^2 + 32b^2  \\
-		& + c^2d^4 - 4c^2d^2 + 8cd^3 - 32cd + 16d^2 - 64 \bigr)
+		& + c^2d^4 - 4c^2d^2 + 8cd^3 - 32cd + 16d^2 - 64 
 	\end{aligned}
 \end{equation}
 となり、$\Delta$ は$a^2$で割り切れる。
@@ -730,9 +737,9 @@ $\Delta_2$は
 \begin{align}\label{eq:1}
 	(\lambda^2 - C_1)(u^2 - c^2 + 4) = 16(a^2+b^2+c^2+abc-4).
 \end{align}
-したがって、$a,b,\lambda$ を自由にとることで　$\mathbb{A}^3_{a,b,\lambda}$ 上の conic bundle とみなせる。
+したがって、$a,b,\lambda$ を自由にとることで $\mathbb{A}^3_{a,b,\lambda}$ 上の conic bundle とみなせる。
 $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref{eq:1}を満たす。
-そこで　$(c,u)$　に対して　$(c,u),(c_0,u_0)$　を通る直線の傾きを $\tau$ として \eqref{eq:1}上の点 $(c,u)$ と $\tau$ を対応させて fiber と $\Projective^1$ の birational な対応ができる。
+そこで $(c,u)$ に対して $(c,u),(c_0,u_0)$ を通る直線の傾きを $\tau$ として \eqref{eq:1}上の点 $(c,u)$ と $\tau$ を対応させて fiber と $\Projective^1$ の birational な対応ができる。
 
 
 \subsection{有理写像の構成}
@@ -792,6 +799,14 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 以上の手続きにより、$(a, b, \lambda, \tau)$ から $(a, b, c, d, e, f)$ が有理式のみで構成される。
 したがって $X$ は $\mathbb{A}^4$ と双有理同値であり、Question \ref{question:8} への回答は肯定的である。
 
+そこで次の疑問が生まれる。
+
+\begin{question}
+	$q_1(M)=k_1,q_2(M)=k_2$ で定義される多様体はどの $k_1,k_2$ でrationalとなるか？
+	あるいは逆に、$\mathbb{A}^2$ 上の多様体の族とみなした時に、generic fiber について言えることはあるか？
+\end{question}
+
+
 \subsection{特殊解}
 
 ★一般の有理数解を得ることができるようになったので、そこから漏れる有理数解について考える。
@@ -802,8 +817,8 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 
 \section{$\mathbb{F}_q$における解の個数}
 
-\ref{question:10}に従い、ディオファントス方程式\eqref{markov_eq}の $\mathbb{F}_q$における解の個数を調べる。
-$q_2{}^2 = 16$　については　$q_2 = \pm4$のいずれかのみ調べればいいので、$q_1(M) = 8, q_2(M) = -4$ について考える。
+Question \ref{question:10}に従い、ディオファントス方程式\eqref{markov_eq}の $\mathbb{F}_q$における解の個数を調べる。
+$q_2{}^2 = 16$ については $q_2 = \pm4$のいずれかのみ調べればいいので、$q_1(M) = 8, q_2(M) = -4$ について考える。
 
 素数べきではなく素数に対してのみ解の個数 $N_p$ をSageMathで数えた結果は次の通り：
 
@@ -825,7 +840,7 @@ $q_2{}^2 = 16$　については　$q_2 = \pm4$のいずれかのみ調べれば
 		29 & 710,646 \\
 		\hline
 	\end{tabular}
-	\caption{$p$ と $N_p (q^2=-4)$ の値}
+	\caption{$p$ と $N_p (q_2=-4)$ の値}
 	\label{tab:Np_values}
 \end{table}
 
@@ -834,6 +849,17 @@ $p=2$ を除いて
 	N_p = p^4 + 4p^2 + 1
 \end{align}
 となっている。
+
+Gemini 3.0によれば、これは $q_1(M)=8,q_2(M)=-4$ で定義される多様体が $\mathbb{A}^4\sqcup\mathbb{A}^2\sqcup\mathbb{A}^2\sqcup\mathbb{A}^0$ という stratification を持つことを示唆しているのではという予想ができる。
+
+\begin{question}
+	$q_1(M)=8,q_2(M)=-4$ で定義される多様体は $\mathbb{A}^4\sqcup\mathbb{A}^2\sqcup\mathbb{A}^2\sqcup\mathbb{A}^0$ という stratification を持つか？
+\end{question}
+
+\begin{question}
+	$8,-4$ 以外の $q_1(M), q_2(M)$ の組に対しても同様に $\mathbb{F}_q$ における解の個数を調べてわかることがあるか？
+	また、その結果から多様体の stratification について何か言えるか？
+\end{question}
 
 
 \bibliography{reference.bib}
