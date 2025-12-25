@@ -10,3 +10,7 @@
 *.toc
 *.dvi
 *.brf
+*.sh
+*.bat
+/tmp
+/.ipynb_checkpoints

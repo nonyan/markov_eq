@@ -57,6 +57,7 @@
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\Complex}{\mathbb{C}}
 \newcommand{\Projective}{\mathbb{P}}
+\newcommand{\Affine}{\mathbb{A}}
 \DeclareMathOperator{\linearspan}{span}
 \newcommand{\Vect}{\mathrm{Vect}}
 \newcommand{\Rep}{\mathrm{Rep}}
@@ -65,6 +66,7 @@
 \DeclareMathOperator{\length}{\ell}
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Spec}{Spec}
 \DeclarePairedDelimiter{\abra}{\langle}{\rangle} % < > angle brackets
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert} % | | absolute value
 \DeclarePairedDelimiter{\rbra}{\lparen}{\rparen} % () round brackets
@@ -599,7 +601,7 @@ Gram matrixは
 
 Question \ref{question:8} に取り組む。
 もし rational なら、$q_1(M) = 8, q_2(M) = -4$ の一般的な有理数解を媒介変数を用いて表示できることになる。
-$q_1(M) = 8, q_2(M) = -4$ で定まる$\mathbb{A}^6$ 内の代数多様体 $X$ に対する birational な式変形を試みる。
+$q_1(M) = 8, q_2(M) = -4$ で定まる$\Affine^6$ 内の代数多様体 $X$ に対する birational な式変形を試みる。
 
 $af - be + cd = q_2(M) = -4$ から $a\neq0$の open subset 上で考えると
 \begin{align}
@@ -631,15 +633,15 @@ $e$ に注目すると、$e$ の2次式になっていて、
 \end{align}
 と書ける。
 最後の式を平方完成して、
-\begin{gather*}
+\begin{gather}
 	\rbra*{2Ae + B}^2 = B^2 - 4AC.
-\end{gather*}
+\end{gather}
 よって
 \begin{gather}
 	w = 2Ae + B,\\
 	\Delta = B^2 -4AC
 \end{gather}
-とおけば $X$ は $\mathbb{A}^5$内で
+とおけば $X$ は $\Affine^5$内で
 \begin{align*}
 	w^2 = \Delta(a,b,c,d)
 \end{align*}
@@ -658,7 +660,7 @@ $e$ に注目すると、$e$ の2次式になっていて、
 \begin{align}
 	\Delta_0 = \Delta/a^2
 \end{align}
-とすれば $X$ は $\mathbb{A}^5$ 内で
+とすれば $X$ は $\Affine^5$ 内で
 \begin{align}
 	w^2 = \Delta_0(a,b,c,d)
 \end{align}
@@ -737,7 +739,7 @@ $\Delta_2$は
 \begin{align}\label{eq:1}
 	(\lambda^2 - C_1)(u^2 - c^2 + 4) = 16(a^2+b^2+c^2+abc-4).
 \end{align}
-したがって、$a,b,\lambda$ を自由にとることで $\mathbb{A}^3_{a,b,\lambda}$ 上の conic bundle とみなせる。
+したがって、$a,b,\lambda$ を自由にとることで $\Affine^3_{a,b,\lambda}$ 上の conic bundle とみなせる。
 $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref{eq:1}を満たす。
 そこで $(c,u)$ に対して $(c,u),(c_0,u_0)$ を通る直線の傾きを $\tau$ として \eqref{eq:1}上の点 $(c,u)$ と $\tau$ を対応させて fiber と $\Projective^1$ の birational な対応ができる。
 
@@ -745,9 +747,9 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 \subsection{有理写像の構成}
 
 前節の議論により、$X$ は rational であることが示唆された。
-ここでは具体的に、パラメータ空間 $\mathbb{A}^4$（座標 $(a, b, \lambda, \tau)$）から $X$ への有理写像
+ここでは具体的に、パラメータ空間 $\Affine^4$（座標 $(a, b, \lambda, \tau)$）から $X$ への有理写像
 \begin{align}
-	\Phi \colon \mathbb{A}^4 \dashrightarrow X
+	\Phi \colon \Affine^4 \dashrightarrow X
 \end{align}
 を構成する。
 
@@ -782,13 +784,13 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 続いて $e$ を決定する。
 係数を
 \begin{gather}
-	A_{\mathrm{quad}} = a^2 - abd + b^2, \\
-	B_{\mathrm{quad}} = -a^3c + a^2bcd - ab^2c + acd^2 + 4ad - 2bcd - 8b, \\
-	D_{\mathrm{val}} = A_{\mathrm{quad}} + d^2 - 4
+	A = a^2 - abd + b^2, \\
+	B = -a^3c + a^2bcd - ab^2c + acd^2 + 4ad - 2bcd - 8b, \\
+	D = A + d^2 - 4
 \end{gather}
-とおくとき、関係式 $w^2 = \Delta_0 = D_{\mathrm{val}} E$ および $w = u D_{\mathrm{val}}$ より
+とおくとき、関係式 $w^2 = \Delta_0 = DE$ および $w = uD$ より
 \begin{align}
-	e = \frac{u D_{\mathrm{val}} - B_{\mathrm{quad}}}{2 A_{\mathrm{quad}}}.
+	e = \frac{uD - B}{2A}.
 \end{align}
 
 最後に $f$ を決定する。
@@ -797,15 +799,52 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 \end{align}
 
 以上の手続きにより、$(a, b, \lambda, \tau)$ から $(a, b, c, d, e, f)$ が有理式のみで構成される。
-したがって $X$ は $\mathbb{A}^4$ と双有理同値であり、Question \ref{question:8} への回答は肯定的である。
-
-そこで次の疑問が生まれる。
-
-\begin{question}
-	$q_1(M)=k_1,q_2(M)=k_2$ で定義される多様体はどの $k_1,k_2$ でrationalとなるか？
-	あるいは逆に、$\mathbb{A}^2$ 上の多様体の族とみなした時に、generic fiber について言えることはあるか？
-\end{question}
-
+逆向きの写像は前節の議論で構成されている。
+明示的に命題としてまとめておく。
+\begin{proposition}
+	$\Complex[a,b,c,d,e,f,\alpha,\beta,\lambda,\tau]$はpolynomial ring over $Complex$ in indeterminates $a,b,c,d,e,f,\alpha,\beta,\lambda,\tau$であるとし、
+	\begin{gather}
+		q_1=acdf-abd-ace-bcf-def+a^2+b^2+c^2+d^2+e^2+f^2,\\
+		q_2=af-be+cd
+	\end{gather}
+	とおく。
+	\begin{gather}
+		X=\Spec(\Complex[a,b,c,d,e,f]/(q_1-8,q_2+4)),\\
+		\Affine^4=\Spec\Complex[\alpha,\beta,\lambda,\tau]
+	\end{gather}
+	とおく。
+	\begin{gather}
+		A_X=a^2-abd+b^2,\\
+		B_X=-a^3c+a^2bcd-ab^2c+acd^2+4ad-2bcd-8b,\\
+		D_X=a^2+b^2+d^2-abd-4,\\
+		u_X=\frac{2A_Xe+B_X}{aD_X},\\
+		K_X=u_X{}^2-c^2+4,\\
+		\lambda_X=\frac{2d(u_X{}^2-c^2)-8c}{K_X}-ab,\\
+		(c_0)_X=\frac{\lambda_X-ab}{2},\\
+		\Lambda_{\Affine^4}=\lambda^2-(\alpha^2-4)(\beta^2-4),\\
+		(c_0)_{\Affine^4}=\frac{\lambda-\alpha\beta}{2},\\
+		\theta=2\frac{(\Lambda_{\Affine^4}+16)(c_0)_{\Affine^4}+8\alpha\beta-\Lambda_{\Affine^4}(c_0)_{\Affine^4}\tau}{\Lambda_{\Affine^4}(\tau^2-1)-16},\\
+		c_{\Affine^4}=(c_0)_{\Affine^4}+\theta,\\
+		u_{\Affine^4}=(c_0)_{\Affine^4}+\tau\theta,\\
+		K_{\Affine^4}=u_{\Affine^4}{}^2-c_{\Affine^4}{}^2+4
+	\end{gather}
+	とおく。
+	
+	このとき、$X$はalgebraic $4$-fold over $k$であり、次を満たすbirational map $\Phi\colon\Affine_k^4\dashrightarrow X$が存在する。
+	\begin{gather}
+		\Phi^*(a)=\alpha,\\
+		\Phi^*(b)=\beta,\\
+		\Phi^*(c)=c_{\Affine^4},\\
+		\Phi^*(d)=\frac{\lambda K_{\Affine^4}+\alpha\beta K_{\Affine^4}+8c_{\Affine^4}}{2(K_{\Affine^4}-4)},\\
+		\Phi^*(e)=\dfrac{-\Phi^*(B_X)+\alpha u_{\Affine^4}\Phi^*(D_X)}{2\Phi^*(A_X)},\\
+		\Phi^*(f)=\Phi^*\rbra*{\frac{-4+be-cd}{a}},\\
+		(\Phi^{-1})^*(\alpha)=a\\
+		(\Phi^{-1})^*(\beta)=b,\\
+		(\Phi^{-1})^*(\lambda)=\lambda_X,\\
+		(\Phi^{-1})^*(\tau)=\frac{u_X-(c_0)_X}{c-(c_0)_X}.
+	\end{gather}
+\end{proposition}
+したがって $X$ は $\Affine^4$ と双有理同値であり、Question \ref{question:8} への回答は肯定的である。
 
 \subsection{特殊解}
 
@@ -813,7 +852,35 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 
 \subsection{組み紐群の作用との関係}
 
-★ディオファントス方程式\eqref{markov_eq}の解への$B_4$の作用は$A^4$だとどうなっているか？
+以前、ディオファントス方程式\eqref{markov_eq}の解への$B_4$の作用を見た。
+この作用は整数解の集合を作用域と想定していたが、$q_1(M) = 8, q_2(M) = -4$ で定まる代数多様体への作用としても定義できる。
+
+以前見た作用の様子を思い出すと$n=4$ の場合を具体的に計算すると、次の通り：
+\begin{gather}
+	\sigma_1 \cdot M = \begin{pmatrix}
+		1 & a & ab-d & ac-e \\
+		0 & 1 & b & c \\
+		0 & 0 & 1 & f \\
+		0 & 0 & 0 & 1
+	\end{pmatrix},\\
+	\sigma_2 \cdot M = \begin{pmatrix}
+		1 & ad-b & a & c \\
+		0 & 1 & d & de-f \\
+		0 & 0 & 1 & e \\
+		0 & 0 & 0 & 1
+	\end{pmatrix},\\
+	\sigma_3 \cdot M = \begin{pmatrix}
+		1 & a & fb-c & b \\
+		0 & 1 & fd-e & d \\
+		0 & 0 & 1 & f \\
+		0 & 0 & 0 & 1
+	\end{pmatrix}.
+\end{gather}
+計算機を用いた検証で、これらの作用は $q_1(M) = 8, q_2(M) = -4$ を保存することが分かる。
+
+このことから、$q_1(M) = 8, q_2(M) = -4$ で定まる多様体 $X$ 上に $B_4$ の作用が定義されるが、先ほど構成したbirational map $\Phi \colon \Affine^4 \dashrightarrow X$ を用いて $\Affine^4$ 上に有理自己同型を引き戻すことができる。
+
+
 
 \section{$\mathbb{F}_q$における解の個数}
 
@@ -850,10 +917,10 @@ $p=2$ を除いて
 \end{align}
 となっている。
 
-Gemini 3.0によれば、これは $q_1(M)=8,q_2(M)=-4$ で定義される多様体が $\mathbb{A}^4\sqcup\mathbb{A}^2\sqcup\mathbb{A}^2\sqcup\mathbb{A}^0$ という stratification を持つことを示唆しているのではという予想ができる。
+Gemini 3.0によれば、これは $q_1(M)=8,q_2(M)=-4$ で定義される多様体が $\Affine^4\sqcup\Affine^2\sqcup\Affine^2\sqcup\Affine^0$ という stratification を持つことを示唆しているのではという予想ができる。
 
 \begin{question}
-	$q_1(M)=8,q_2(M)=-4$ で定義される多様体は $\mathbb{A}^4\sqcup\mathbb{A}^2\sqcup\mathbb{A}^2\sqcup\mathbb{A}^0$ という stratification を持つか？
+	$q_1(M)=8,q_2(M)=-4$ で定義される多様体は $\Affine^4\sqcup\Affine^2\sqcup\Affine^2\sqcup\Affine^0$ という stratification を持つか？
 \end{question}
 
 \begin{question}
@@ -866,4 +933,3 @@ Gemini 3.0によれば、これは $q_1(M)=8,q_2(M)=-4$ で定義される多様
 \bibliographystyle{amsalpha}
 
 \end{document}
-
