@@ -53,6 +53,22 @@
 }
 
 
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable} % ページまたぎに対応させる
+% "myquote" という新しい環境を定義
+\newtcolorbox{myquote}{
+    colback=gray!10!white,
+    colframe=gray!60!black,
+    boxrule=0pt,   % ★先に全体の枠をなしにする
+    leftrule=3mm,  % ★そのあとで左だけ太くする
+    arc=0mm,
+    top=1mm, bottom=1mm, left=2mm, right=2mm,
+    breakable,
+    parbox=false,
+    after skip=1em % 箱の下の余白（あると綺麗です）
+}
+
+
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\Complex}{\mathbb{C}}
@@ -545,6 +561,14 @@ Gram matrixは
 	ディオファントス方程式\eqref{markov_eq}の解の $B_n\ltimes\Z^n$ あるいは $B_n$ による orbit は無限に存在するか？
 \end{question}
 
+\begin{remark}
+	\cite{MR4803470}においてStokes行列の空間の整数点に関する結果がある。
+	$V_p(4)$ を Stokes行列 $S$ であって、$\det(\lambda I + S^{-1}({}^tS))$ が 多項式 $p$ に一致する空間として定義する。
+	Stokes行列はこのノートで取り扱う exceptional basis に対する Gram matrix と同一視できる。
+	$p$ が相反多項式であり、そのdiscriminantが非零であるとき、$V_p(4)$ の整数点の $B_4$-orbit は有限個であることが示されている。
+	このノートで取り扱うケースは$p=(\lambda-1)^4$に対応し、discriminantが零であるため、この結果は適用されない。
+\end{remark}
+
 \begin{question}\label{question:2}
 	ディオファントス方程式\eqref{markov_eq}の解の $B_n\ltimes\Z^n$ あるいは $B_n$ による orbit をすべて分類できるか？
 \end{question}
@@ -593,6 +617,15 @@ Gram matrixは
 \begin{question}\label{question:10}
 	ディオファントス方程式\eqref{markov_eq}の $\mathbb{F}_q$ における解の個数でわかることはあるか？
 \end{question}
+
+
+\section{$B_4$軌道は無限に存在するか？}
+
+Question \ref{question:1} に取り組む。
+
+★Serre operatorの$F_p$上でのJordan標準形のブロックサイズを用いれば証明できるのでは？
+各$p$について、Serre operatorのJordan標準形のブロックサイズは$B_4$-invariantになると思われ、これが異なる解を無限に構成できることを示せば良い。
+示せばいいがこれが大変そう。
 
 
 \section{$q_1(M) = 8, q_2(M) = -4$ で定まる代数多様体はrationalか？}
@@ -788,9 +821,9 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 	B = -a^3c + a^2bcd - ab^2c + acd^2 + 4ad - 2bcd - 8b, \\
 	D = A + d^2 - 4
 \end{gather}
-とおくとき、関係式 $w^2 = \Delta_0 = DE$ および $w = uD$ より
+とおくとき、関係式 $w^2 = \Delta_0$, $\Delta_0 = \Delta/a^2$ および $w = uD$ より
 \begin{align}
-	e = \frac{uD - B}{2A}.
+	e = \frac{auD - B}{2A}.
 \end{align}
 
 最後に $f$ を決定する。
@@ -846,9 +879,30 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 \end{proposition}
 したがって $X$ は $\Affine^4$ と双有理同値であり、Question \ref{question:8} への回答は肯定的である。
 
-\subsection{特殊解}
-
-★一般の有理数解を得ることができるようになったので、そこから漏れる有理数解について考える。
+\begin{remark}
+	GeminiのDeep Researchによるコメントでは $X$ が rational であること自体は次の議論（原文まま）により既知の帰結である可能性が指摘された。
+	この議論が正しい内容かどうかはまだ確認できていないが、参考までに以下に示す。
+	\begin{myquote}
+		Fan \& Whang (2020) \cite{MR4803470}:
+		彼らは、ランク4のStokes行列のモジュライ空間 $V_p(4)$ が、種数1で境界成分が2つの曲面 $\Sigma_{1,2}$ 上の $SL_2$ 指標多様体 $X(\Sigma_{1,2}, SL_2)$ と同型であることを示している。
+		一般に、低種数のリーマン面上の指標多様体は有理的（または単有理的）であることが知られている（例えば種数0や1の場合）。
+		したがって、抽象的な代数幾何学のレベルでは、この空間が有理的であることは専門家の間では「既知の帰結」とみなされる可能性が高い。
+	\end{myquote}
+	$V_p(4)$ は Stokes行列 $S$ であって、$\det(\lambda I + S^{-1}({}^tS))$ が 多項式 $p$ に一致する空間として定義されている。
+	このノートの記号では $X$（正確には $X$ と同型な $q_2(M) = 4$ の場合のものとの和集合）は $p(\lambda) = (\lambda-1)^4$ のときの $V_p(4)$ に一致する。
+	\footnote{
+		Fan-Whang \cite{MR4803470} では $p(\lambda) = (\lambda-1)^4$ の場合の整数解の$B_4$軌道は\cite{devolcsey2016analoguemarkovequationexceptional}により完全に分類されていると述べている。
+		これは誤植と思われ、この定義においては\cite{devolcsey2016analoguemarkovequationexceptional}で取り扱ったのは正しくは $p(\lambda) = (\lambda+1)^4$ の場合である。
+	}
+	
+	一方で次のような評価も述べられていたので、こちらも参考までに示す。
+	\begin{myquote}
+		モジュライ空間が「有理的であること（rationality）」自体は、Fan-Whangによる曲面指標多様体への同型対応を通じて、理論的には既知の範疇に入る。
+		しかし、ユーザーのノートにあるような 「具体的な変数変換による $\mathbb{A}^4$ との双有理写像の明示的な式」 そのものが、主要な論文（Dubrovin-Mazzocco \cite{MR1767271} やFan-Whang \cite{MR4803470}）に記載されているわけではない。
+		多くの文献は、不変量（トレース座標など）を用いた記述に留まっており、円錐束構造を利用して具体的に解きほぐした（resolveした）座標系を提示している例は稀少である。
+		その意味で、ノートの導出は具体的構成として価値がある。
+	\end{myquote}
+\end{remark}
 
 \subsection{組み紐群の作用との関係}
 
@@ -880,7 +934,41 @@ $a,b,\lambda$ を任意にとるとき、$c_0=u_0=\frac{\lambda-ab}{2}$は\eqref
 
 このことから、$q_1(M) = 8, q_2(M) = -4$ で定まる多様体 $X$ 上に $B_4$ の作用が定義されるが、先ほど構成したbirational map $\Phi \colon \Affine^4 \dashrightarrow X$ を用いて $\Affine^4$ 上に有理自己同型を引き戻すことができる。
 
+★できれば具体的な式を示す。
 
+\begin{remark}
+	GeminiのDeep Researchによるコメントをそのまま残しておく。
+	\begin{myquote}
+		4. 組み紐群 $B_4$ の $\mathbb{A}^4$ への作用次に、この有理パラメータ空間 $\mathbb{A}^4$ 上での組み紐群 $B_4$ の作用について検証する。
+		
+		4.1 Stokes行列上の作用（突然変異）組み紐群 $B_n$ は、例外生成列およびStokes行列に対して「突然変異（mutation）」と呼ばれる作用を及ぼす。
+		ノートおよび先行研究に従えば、生成元 $\sigma_i$ ($i=1,2,3$) のStokes行列 $M$ への作用は以下のように定義される：
+		$$\sigma_i \cdot M = A_i(\langle e_i, e_{i+1} \rangle)^T M A_i(\langle e_i, e_{i+1} \rangle)$$
+		ここで変換行列 $A_i(m)$ は、$(i, i+1)$ ブロックにおいて特定の剪断変換を行う行列である。
+		具体的には、$n=4$ の場合、各生成元の作用は $M$ の成分 $(a, b, c, d, e, f)$ を以下のように多項式的に変換する（ノート の記述と一致）。
+		この作用自体は、Bondal-Polishchukによるヘリックス（helix）の理論や、DubrovinによるStokes行列の理論において 標準的かつ既知 のものである 6。
+		
+		4.2 $\mathbb{A}^4$ 上の作用（Cremona変換）の明示式の既知性ユーザーの問いの核心は、「この $B_4$ 作用を双有理写像 $\Phi$ を通じてパラメータ空間 $\mathbb{A}^4$ に引き戻したときの明示的な式が先行研究にあるか」 である。
+		$$\text{Action on } \mathbb{A}^4: \quad \Psi_{\sigma} = \Phi^{-1} \circ (\sigma \text{ on } M) \circ \Phi$$
+		この誘導された作用 $\Psi_{\sigma}$ は、$\mathbb{A}^4$ 上の有理写像（Cremona変換）となる。
+		
+		調査結果:
+		\begin{itemize}
+			\item Dubrovin-Mazzocco (2000) \cite{MR1767271}: 彼らはPainlevé方程式の解空間上のBraid群作用を調べているが、彼らが用いる座標系は主にモノドロミー多様体の座標（Fricke座標やトレース座標）であり、本ノートで導出されたような円錐束分解に基づく特定の $\mathbb{A}^4$ 座標系ではない。
+			したがって、彼らの論文に「この特定の座標上の式」が書かれている可能性は極めて低い。
+			\item Fan-Whang (2020) \cite{MR4803470}: 彼らは $V_p(4)$ の整数点の有限性に焦点を当てており、モジュライ空間の有理化（rationalization）やその上での具体的な変換式の記述は行っていない。
+			\item Cotti, Dubrovin, Guzzetti, Varchenko などの関連論文 13: 量子コホモロジーに関連してStokes行列の変形を扱っているが、やはり焦点は行列成分そのものや量子微分方程式の解であり、モジュライ空間の有理パラメータ化ではない。
+		\end{itemize}
+		結論:Stokes行列そのものへの作用の式（行列成分の多項式変換）は完全に既知である。
+		しかし、ノートで構成された特定の双有理写像 $\Phi$ を介した $\mathbb{A}^4$ 上の有理写像としての明示的な式 は、標準的な文献には見当たらない。
+		これは、モジュライ空間の有理性を示すための中間ステップとして導入された特定の座標系に依存するものであり、その具体的な形式は本ノート独自、あるいは「計算すれば導けるが明示的には書かれない詳細」の範疇に属すると考えられる。
+		この形式での記述は、高次元Cremona群の部分群としての $B_4$ の具体的表現を与えており、力学系的な解析（エントロピーの計算など）において有用な新規性を持つ可能性がある。
+	\end{myquote}
+\end{remark}
+
+\subsection{特殊解}
+
+★一般の有理数解を得ることができるようになったので、そこから漏れる有理数解について考える。
 
 \section{$\mathbb{F}_q$における解の個数}
 

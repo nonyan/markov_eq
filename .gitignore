@@ -14,3 +14,4 @@
 *.bat
 /tmp
 /.ipynb_checkpoints
+/refs
