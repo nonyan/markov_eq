@@ -68,7 +68,7 @@
     after skip=1em % 箱の下の余白（あると綺麗です）
 }
 
-
+\newcommand{\F}{\mathbb{F}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Real}{\mathbb{R}}
 \newcommand{\Complex}{\mathbb{C}}
@@ -623,10 +623,82 @@ Gram matrixは
 
 Question \ref{question:1} に取り組む。
 
-★Serre operatorの$F_p$上でのJordan標準形のブロックサイズを用いれば証明できるのでは？
-各$p$について、Serre operatorのJordan標準形のブロックサイズは$B_4$-invariantになると思われ、これが異なる解を無限に構成できることを示せば良い。
-示せばいいがこれが大変そう。
+ディオファントス方程式\eqref{markov_eq}の解行列 $M$ から Serre operator $S_M = M^{-1} \transpose{M}$ を作り、その$\F_p$上でのJordan標準形のブロックサイズをとると、これは、$B_4$-invariantになる。
+ひとつのSerre operatorから $\F_p$ 上のSerre operatorのJordan標準形のブロックサイズを対応させて無限のデータを並べたものを考える。
+これも$B_4$-invariantになる。
+このデータが異なる解を無限に構成できることを示せば、$B_4$軌道が無限に存在することを示すことができる。
 
+\begin{lemma}
+	任意の素数 $p$ に対して、Serre operator の $\F_p$ 上での Jordan 標準形のブロックサイズは $B_4$-invariant になる。
+\end{lemma}
+
+\begin{proof}
+	$B_4$ の生成元 $\sigma_1,\sigma_2,\sigma_3$ に対して成り立つことを示せばよい。
+	$\sigma_1$ に対しては
+	\begin{align}
+		S_{\sigma_1\cdot M} = (\sigma_1\cdot M)^{-1} \transpose{(\sigma_1\cdot M)} \\
+		=& (\transpose{A_1(a)}MA_1(a))^{-1} \transpose{(\transpose{A_1(a)}MA_1(a))} \\
+		=& A_1(a)^{-1} M^{-1}\transpose{A_1(a)^{-1}}\transpose{A_1(a)} \transpose{M} A_1(a) \\
+		=& A_1(a)^{-1} M^{-1} \transpose{M} A_1(a) \\
+		=& A_1(a)^{-1} S_M A_1(a)
+	\end{align}
+	となるので、$\F_p$ 上での Jordan 標準形のブロックサイズは変わらない。
+	$\sigma_2,\sigma_3$ についても同様に示せる。
+\end{proof}
+
+そこで次の解の $\F_p$ 上での Serre operator の Jordan 標準形のブロックサイズを調べる。
+\begin{align}
+		M_k = \begin{pmatrix}
+				1 & 2 & k & 0 \\
+				0 & 1 & k & 0 \\
+				0 & 0 & 1 & -2 \\
+				0 & 0 & 0 & 1
+		\end{pmatrix}
+\end{align}
+とおく。
+これは$q_1(M) = 8, q_2(M) = -4$の解になる。
+Serre operatorは
+\begin{align}
+	S_k = M_k^{-1} \transpose{M_k} = \begin{pmatrix}
+		k^2 - 3  &k^2 - 2  &-3k      & 2k \\
+		-k^2 + 2 &-k^2 + 1 &3k     & -2k \\
+		k        &k       &-3        & 2 \\
+		0        &0       &-2        & 1
+	\end{pmatrix}
+\end{align}
+となるので
+\begin{align}
+	I + S_k = \begin{pmatrix}
+		k^2 - 2  &k^2 - 2  &-3k      & 2k \\
+		-k^2 + 2 &-k^2 + 2 &3k     & -2k \\
+		k        &k       &-2        & 2 \\
+		0        &0       &-2        & 2
+	\end{pmatrix}
+\end{align}
+となる。
+$p$を奇素数とすると $k$が$p$で割り切れるときはrank 2になるのでJordan blockのサイズは$[2,2]$となる。
+$k$が$p$で割り切れないときはrank 3になるのでJordan blockのサイズは$[4]$となる。
+\begin{itemize}
+	\item $p \mid k$ のとき $(2,2)$
+	\item $p \nmid k$ のとき $(4)$.
+\end{itemize}
+この考察からすぐに次が出る。
+\begin{proposition}
+	ディオファントス方程式 $q_1(M) = 8, q_2(M) = -4$ の整数解の$B_4$軌道は無限に存在する。
+\end{proposition}
+
+\begin{proof}
+	$p$を奇素数とすると、$M_p$はディオファントス方程式 $q_1(M) = 8, q_2(M) = -4$ の解である。
+	
+	また、$p^\prime$を奇素数とするとき、$M_p$の$\F_{p^\prime}$上でのSerre operatorのJordan標準形のブロックサイズは
+	\begin{itemize}
+		\item $p^\prime = p$ のとき $(2,2)$
+		\item $p^\prime \neq p$ のとき $(4)$
+	\end{itemize}
+	となる。
+	特に、相違なる奇素数$p,p^\prime$に対して、$M_p,M_{p^\prime}$の$\F_p$でのSerre operatorのJordan block sizeは異なるので、$M_p,M_{p^\prime}$は同じ$B_4$軌道に属さない。
+	素数が無限に存在することから、ディオファントス方程式 $q_1(M) = 8, q_2(M) = -4$ の整数解の$B_4$軌道は無限に存在することが示された。
+\end{proof}
 
 \section{$q_1(M) = 8, q_2(M) = -4$ で定まる代数多様体はrationalか？}
 
